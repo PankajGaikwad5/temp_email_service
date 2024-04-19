@@ -28,6 +28,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [username, setUsername] = useState('');
   const [inbox, setInbox] = useState<Message[]>([]);
+  const [openedMsg, setOpenMsg] = useState('');
   const copyToClipboard = () => {
     navigator.clipboard.writeText(username).then(() => {
       console.log('Username copied to clipboard:', username);
@@ -69,6 +70,7 @@ export default function Home() {
     console.log(id);
     const message = inbox.find((msg) => msg.id === id);
     console.log(message?.intro);
+    setOpenMsg(JSON.stringify(message?.intro));
   };
 
   return (
@@ -153,6 +155,11 @@ export default function Home() {
             </div>
           )}
         </div>
+        {openedMsg && (
+          <div className='my-2 p-4 border-2 text-wrap border-gray-200 shadow-md rounded-lg line-clamp-none'>
+            <p>{openedMsg}</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -40,8 +40,6 @@ export default async function mail(callback) {
     // });
     callback(msg);
   }
-  // const {status, message} = await mailjs.me()
-  console.log(await mailjs.me());
   return {
     username,
     deleteAccount: async () => {
